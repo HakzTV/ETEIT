@@ -7,7 +7,13 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
+    <meta
+    name="description"
+    content="Empowered To Excel In IT (ETEIT) is a technology company
+    accelerating the pace of sustainable digitalization for Startups,small, medium and elite companies by assisting them achieve their objective."
+  />
+  <!-- <meta property="og:title" content="Let Us Digitize your business and bring you amazing digital Products" /> -->
+    <link rel="icon" type="image/svg"  href="images/ETEIT.svg" />
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
       rel="stylesheet"
@@ -770,7 +776,7 @@
                   class="form-control"
                   id="name"
                   name="company-name"
-                  required
+                  required  autocomplete="on"
                 /><label class="form-control-placeholder" for="name"
                   >Company name</label
                 >
@@ -781,7 +787,7 @@
                   class="form-control"
                   id="industry"
                   name="company-industry"
-                  required
+                  required  autocomplete="on"
                 /><label class="form-control-placeholder" for="industry"
                   >Company Industry</label
                 >
@@ -792,7 +798,7 @@
                   class="form-control"
                   id="number"
                   name="company-number"
-                  required
+                  required  autocomplete="on"
                 /><label class="form-control-placeholder" for="number"
                   >Company Number</label
                 >
@@ -803,14 +809,14 @@
                   class="form-control"
                   id="emails"
                   name="email"
-                  required
+                  required  autocomplete="on"
                 /><label class="form-control-placeholder" for="emails"
                   >Email address</label
                 >
               </div>
 
               <div class="form-group">
-                <input type="text" class="form-control" id="number" name="phone-number" required />
+                <input type="text" class="form-control" id="number" name="phone-number" required  autocomplete="on"/>
                 <label class="form-control-placeholder" for="number"
                   >Phone Number</label
                 >
@@ -824,7 +830,10 @@
                 </button>
                 
               </div>
-              <p id="my-form-status"></p>
+              <div class="level">
+
+                <p id="my-form-status"></p>
+              </div>
               <p class="terms mt-4">
                 By clicking "Get a quote", you consent to ETEIT storing the
                 information submitted on this page so you can get most

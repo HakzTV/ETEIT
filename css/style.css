@@ -9936,6 +9936,18 @@ p.form-para::after {
   font-size: 15px;
 }
 
+.google-map {
+  position: relative;
+}
+
+.google-map iframe {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
 .block-21 .blog-img {
   display: block;
   height: 80px;
