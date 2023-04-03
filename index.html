@@ -761,7 +761,7 @@
                 >
               </p>
             </div>
-            <form class="information">
+            <form id="my-form" action="https://formspree.io/f/mqkoywdg" method="POST" class="information">
               <h4 class="form-heading">Request a Quote!</h4>
 
               <div class="form-group">
@@ -769,49 +769,62 @@
                   type="text"
                   class="form-control"
                   id="name"
+                  name="company-name"
                   required
                 /><label class="form-control-placeholder" for="name"
                   >Company name</label
                 >
               </div>
-
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="industry"
+                  name="company-industry"
+                  required
+                /><label class="form-control-placeholder" for="industry"
+                  >Company Industry</label
+                >
+              </div>
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
                   id="number"
+                  name="company-number"
                   required
                 /><label class="form-control-placeholder" for="number"
-                  >Contact Number</label
+                  >Company Number</label
                 >
               </div>
               <div class="form-group">
                 <input
                   type="email"
                   class="form-control"
-                  id="email"
+                  id="emails"
+                  name="email"
                   required
-                /><label class="form-control-placeholder" for="email"
+                /><label class="form-control-placeholder" for="emails"
                   >Email address</label
                 >
               </div>
 
               <div class="form-group">
-                <input type="text" class="form-control" id="number" required />
+                <input type="text" class="form-control" id="number" name="phone-number" required />
                 <label class="form-control-placeholder" for="number"
                   >Phone Number</label
                 >
               </div>
 
               <div class="form-group mt-3">
-                <button type="button" class="btn btn-block btn-primary">
+                <button type="submit" class="btn btn-block btn-primary">
                   <span
                     >Get a quote &nbsp;<i class="fas fa-arrow-right"></i>
                   </span>
                 </button>
                 
               </div>
-
+              <p id="my-form-status"></p>
               <p class="terms mt-4">
                 By clicking "Get a quote", you consent to ETEIT storing the
                 information submitted on this page so you can get most
@@ -1027,5 +1040,37 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      var form = document.getElementById("my-form");
+      
+      async function handleSubmit(event) {
+        event.preventDefault();
+        var status = document.getElementById("my-form-status");
+        var data = new FormData(event.target);
+        fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: {
+              'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            status.innerHTML = "Thanks for your submission!";
+            form.reset()
+          } else {
+            response.json().then(data => {
+              if (Object.hasOwn(data, 'errors')) {
+                status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+              } else {
+                status.innerHTML = "Oops! There was a problem submitting your form"
+              }
+            })
+          }
+        }).catch(error => {
+          status.innerHTML = "Oops! There was a problem submitting your form"
+        });
+      }
+      form.addEventListener("submit", handleSubmit)
+  </script>
   </body>
 </html>

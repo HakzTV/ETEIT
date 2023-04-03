@@ -159,12 +159,17 @@
         <div class="row block-9">
           <div class="col-md-6 pr-md-5">
             <h1 style="font-weight: 1000">Get in touch</h1>
-            <form action="#">
+            <form
+              action="https://formspree.io/f/xgebnrzg"
+              method="POST"
+              id="my-form"
+            >
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Your Name"
+                  name="name"
                 />
               </div>
               <div class="form-group">
@@ -172,14 +177,20 @@
                   type="text"
                   class="form-control"
                   placeholder="Your Email"
+                  name="email"
                 />
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Subject"
+                  name="subject"
+                />
               </div>
               <div class="form-group">
                 <textarea
-                  name=""
+                  name="message"
                   id=""
                   cols="30"
                   rows="7"
@@ -196,6 +207,7 @@
                   Submit
                 </button>
               </div>
+              <div class="level"><p id="my-form-status"></p></div>
             </form>
           </div>
 
@@ -358,5 +370,45 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      var form = document.getElementById("my-form");
+
+      async function handleSubmit(event) {
+        event.preventDefault();
+        var status = document.getElementById("my-form-status");
+        var data = new FormData(event.target);
+        fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              status.innerHTML = "Thanks for your submission!";
+              status.classList.add("alert-sucess");
+              form.reset();
+            } else {
+              response.json().then((data) => {
+                if (Object.hasOwn(data, "errors")) {
+                  status.innerHTML = data["errors"]
+                    .map((error) => error["message"])
+                    .join(", ");
+                } else {
+                  status.innerHTML =
+                    "Oops! There was a problem submitting your form";
+                  status.classList.add("alert-danger");
+                }
+              });
+            }
+          })
+          .catch((error) => {
+            status.innerHTML = "Oops! There was a problem submitting your form";
+          });
+      }
+      form.addEventListener("submit", handleSubmit);
+    </script>
+    s
   </body>
 </html>
