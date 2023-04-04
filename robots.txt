@@ -8,6 +8,8 @@ Disallow: /images/
 Disallow: /js/
 Disallow: /scss/
 Disallow: /.gitignore
+Disallow: /test.html
+
 
 Allow: /wp-admin/admin-ajax.php
 
