@@ -2,7 +2,6 @@ User-agent: *
 Disallow: /admin/
 Disallow: /cgi-bin/
 
-Disallow: /css/
 Disallow: /fonts/
 Disallow: /images/
 Disallow: /js/
