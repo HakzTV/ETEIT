@@ -1,14 +1,13 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /cgi-bin/
 
-Disallow: /fonts/
 Disallow: /images/
-Disallow: /js/
 Disallow: /scss/
 Disallow: /.gitignore
 Disallow: /test.html
 
+User-agent: Googlebot
+Allow: *css
+Allow: *.js# global
 Sitemap: https://eteitgh.com/sitemap.xml
 
 
